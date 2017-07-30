@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.autox.core.dao.QdComputerDao">
+  <!-- 字段与实体的映射 -->
+  <resultMap id = "BaseResultMap" type = "com.autox.core.entity.QdComputerEntity">
+    <id column = "id" property = "id" jdbcType = "CHAR"/>
+    <result column = "mac_address" property = "macAddress" jdbcType = "VARCHAR"/>
+    <result column = "user_name" property = "userName" jdbcType = "VARCHAR"/>
+    <result column = "ip" property = "ip" jdbcType = "VARCHAR"/>
+    <result column = "create_user" property = "createUser" jdbcType = "VARCHAR"/>
+    <result column = "create_time" property = "createTime" jdbcType = "TIMESTAMP"/>
+    <result column = "update_user" property = "updateUser" jdbcType = "VARCHAR"/>
+    <result column = "update_time" property = "updateTime" jdbcType = "TIMESTAMP"/>
+    <result column = "remark" property = "remark" jdbcType = "VARCHAR"/>
+  </resultMap>
+
+  <!-- 字段集合 -->
+  <sql id = "Base_Column_List">
+    `id`, `mac_address`, `user_name`, `ip`, `create_user`, `create_time`, `update_user`, `update_time`, `remark`
+  </sql>
+
+  <!-- 根据主键查询 -->
+  <select id = "selectByPrimaryKey" resultMap = "BaseResultMap" parameterType = "java.lang.String">
+    select
+    <include refid = "Base_Column_List"/>
+    from `qd_computer`
+    where `id` = #{id,jdbcType=CHAR};
+  </select>
+
+  <!-- 单条删除 -->
+  <delete id = "deleteByPrimaryKey" parameterType = "java.lang.String">
+    DELETE FROM `qd_computer`
+    WHERE `id` = #{id,jdbcType=CHAR};
+  </delete>
+
+  <!-- 多条删除 -->
+  <delete id="deleteByIds" parameterType="java.util.List" >
+    delete from `tab_leave_school` where `id` in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+  <!-- 选择性添加 -->
+  <insert id = "insertSelective" parameterType = "com.autox.core.entity.QdComputerEntity">
+    insert into `qd_computer`
+    <trim prefix = "(" suffix = ")" suffixOverrides = ",">
+      <if test = "id != null and id !=''">
+        `id`,
+      </if>
+      <if test = "macAddress != null and macAddress !=''">
+        `mac_address`,
+      </if>
+      <if test = "userName != null and userName !=''">
+        `user_name`,
+      </if>
+      <if test = "ip != null and ip !=''">
+        `ip`,
+      </if>
+      <if test = "createUser != null and createUser !=''">
+        `create_user`,
+      </if>
+      <if test = "createTime != null">
+        `create_time`,
+      </if>
+      <if test = "updateUser != null and updateUser !=''">
+        `update_user`,
+      </if>
+      <if test = "updateTime != null">
+        `update_time`,
+      </if>
+      <if test = "remark != null and remark !=''">
+        `remark`,
+      </if>
+    </trim>
+    <trim prefix = "values (" suffix = ")" suffixOverrides = ",">
+      <if test = "id != null and id !=''">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test = "macAddress != null and macAddress !=''">
+        #{macAddress,jdbcType=VARCHAR},
+      </if>
+      <if test = "userName != null and userName !=''">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test = "ip != null and ip !=''">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test = "createUser != null and createUser !=''">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test = "createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test = "updateUser != null and updateUser !=''">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test = "updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test = "remark != null and remark !=''">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <!-- 选择性更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.autox.core.entity.QdComputerEntity" >
+    update `qd_computer`
+    <set>
+      <if test="macAddress != null">
+        `mac_address`= #{macAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        `user_name`= #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        `ip`= #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        `create_user`= #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `create_time`= #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        `update_user`= #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        `update_time`= #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        `remark`= #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=CHAR};
+  </update>
+</mapper>

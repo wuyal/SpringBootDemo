@@ -1,0 +1,8 @@
+${AnsiColor.BRIGHT_YELLOW}
+          _____                _____                    _____                    _____
+           <> <>               <>  <>                   <>  <>                   <>  <>
+             -                    -                        -                        -
+${AnsiColor.DEFAULT}::: ${project.name} (v${AnsiBackground.BLUE}${AnsiColor.WHITE}${project.version}${AnsiColor.DEFAULT})
+::: OS (${AnsiColor.YELLOW}${os.name}${AnsiColor.DEFAULT})
+::: JAVA (v${AnsiColor.YELLOW}${java.version}${AnsiColor.DEFAULT})
+::: Spring-Boot (v${AnsiBackground.YELLOW}${AnsiColor.WHITE}${spring-boot.version}${AnsiColor.DEFAULT})
