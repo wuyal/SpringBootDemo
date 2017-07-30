@@ -1,3 +1,3 @@
-#springboot druid
-后端 ，情应用 ，后期整个 合适前端 作为CRM项目
-##调了个好用的
+# OpenAPI 接入 BearyChat
+
+[![@BearyChat](http://openapi.beary.chat/badge.svg)](
